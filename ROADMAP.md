@@ -142,14 +142,14 @@ Reference: `cli_handler.dart` lines 493-589
 
 ---
 
-## Phase 7: Staking Commands (4 commands) ⏳
+## Phase 7: Staking Commands (4 commands) ✅
 
 Reference: `cli_handler.dart` lines 591-700
 
-- [ ] `stake.list` - List stake entries (Line 591-625)
-- [ ] `stake.register` - Stake ZNN 1-12 months (Line 627-662)
-- [ ] `stake.revoke` - Cancel expired stake (Line 664-683)
-- [ ] `stake.collect` - Collect staking rewards (Line 685-700)
+- [x] `stake.list` - List stake entries (Line 591-625)
+- [x] `stake.register` - Stake ZNN 1-12 months (Line 627-662)
+- [x] `stake.revoke` - Cancel expired stake (Line 664-683)
+- [x] `stake.collect` - Collect staking rewards (Line 685-700)
 
 ---
 
@@ -256,7 +256,7 @@ Reference: `cli_handler.dart` lines 793-1043
 - Query: 4 commands ✅
 - Transaction: 3 commands ✅
 - Plasma: 4 commands ✅
-- Staking: 4 commands ⏳
+- Staking: 4 commands ✅
 - Pillar: 7 commands ⏳
 - Sentinel: 5 commands ⏳
 - Token: 9 commands ⏳
@@ -270,4 +270,5 @@ Reference: `cli_handler.dart` lines 793-1043
 - Phase 4: Query Commands ✅ (4/4 commands)
 - Phase 5: Transaction Commands ✅ (3/3 commands)
 - Phase 6: Plasma Commands ✅ (4/4 commands)
-- Overall: **39%** (17/44 commands implemented)
+- Phase 7: Staking Commands ✅ (4/4 commands)
+- Overall: **48%** (21/44 commands implemented)

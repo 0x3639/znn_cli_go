@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/0x3639/znn_cli_go/cmd/plasma"
+	"github.com/0x3639/znn_cli_go/cmd/stake"
 	"github.com/0x3639/znn_cli_go/pkg/config"
 	"github.com/spf13/cobra"
 )
@@ -58,6 +59,7 @@ func init() {
 
 	// Register subcommand groups
 	rootCmd.AddCommand(plasma.PlasmaCmd)
+	rootCmd.AddCommand(stake.StakeCmd)
 
 	// Global persistent flags (available to all subcommands)
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.znn/cli-config.yaml)")
