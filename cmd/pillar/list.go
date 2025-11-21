@@ -39,9 +39,11 @@ func runList(cmdCobra *cobra.Command, args []string) error {
 	pageIndex := uint32(0)
 	pageSize := uint32(25)
 	if len(args) >= 1 {
+		// #nosec G104 - Default value used on parse failure
 		fmt.Sscanf(args[0], "%d", &pageIndex)
 	}
 	if len(args) >= 2 {
+		// #nosec G104 - Default value used on parse failure
 		fmt.Sscanf(args[1], "%d", &pageSize)
 	}
 

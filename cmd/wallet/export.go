@@ -50,6 +50,7 @@ func runExport(c *cobra.Command, args []string) error {
 	}
 
 	// Open source file
+	// #nosec G304 - Source path is constrained to wallet directory
 	sourceFile, err := os.Open(sourcePath)
 	if err != nil {
 		return fmt.Errorf("failed to open source file: %w", err)
@@ -57,6 +58,7 @@ func runExport(c *cobra.Command, args []string) error {
 	defer sourceFile.Close()
 
 	// Create destination file
+	// #nosec G304 - Destination path is user-specified (expected CLI behavior)
 	destFile, err := os.Create(destPath)
 	if err != nil {
 		return fmt.Errorf("failed to create destination file: %w", err)

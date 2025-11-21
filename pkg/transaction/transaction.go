@@ -120,7 +120,7 @@ func EnsurePlasmaOrPoW(c *rpc_client.RpcClient, address types.Address, template 
 	}
 
 	// Generate PoW nonce using SDK function
-	difficultyBig := big.NewInt(int64(difficulty))
+	difficultyBig := new(big.Int).SetUint64(difficulty)
 	nonceBytes := pow.GetPoWNonce(difficultyBig, template.Hash)
 
 	// Set the nonce

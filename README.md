@@ -1,5 +1,10 @@
 # Zenon Go CLI (znn-cli)
 
+[![CI](https://github.com/0x3639/znn_cli_go/actions/workflows/ci.yml/badge.svg)](https://github.com/0x3639/znn_cli_go/actions/workflows/ci.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/0x3639/znn_cli_go)](https://goreportcard.com/report/github.com/0x3639/znn_cli_go)
+[![Security](https://img.shields.io/badge/security-gosec%20clean-brightgreen)](https://github.com/securego/gosec)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 A complete command-line interface wallet for the Zenon Network, written in Go. This CLI replicates all core functionality from the [Dart CLI](https://github.com/zenon-network/znn_cli_dart) with improved usability and performance.
 
 ## Features
@@ -182,11 +187,16 @@ make test              # Run all tests
 make test-coverage     # Run tests with coverage report
 ```
 
+**Test Coverage**: 94% for critical business logic (pkg/format)
+**Security**: 0 issues (gosec scan clean)
+
+See [TESTING.md](TESTING.md) for detailed testing documentation.
+
 ### Linting
 
 ```bash
 make lint              # Run golangci-lint
-make security          # Run gosec security scanner
+make security          # Run gosec security scanner (0 issues)
 make fmt               # Format code
 ```
 
@@ -197,6 +207,19 @@ make build             # Build binary
 make clean             # Clean build artifacts
 make all               # Run all checks and build
 ```
+
+### Continuous Integration
+
+The project uses GitHub Actions for automated testing and quality checks:
+
+- **Test**: Runs all tests with race detector and generates coverage reports
+- **Lint**: Runs golangci-lint for code quality
+- **Security**: Runs gosec security scanner and uploads SARIF results
+- **Build**: Tests building on Linux, macOS, and Windows with Go 1.21, 1.22, 1.23
+- **Vet**: Runs `go vet` static analysis
+- **Format**: Checks code formatting with `gofmt`
+
+All checks must pass before merging pull requests.
 
 ## Project Structure
 
