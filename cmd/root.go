@@ -9,6 +9,7 @@ import (
 	"github.com/0x3639/znn_cli_go/cmd/plasma"
 	"github.com/0x3639/znn_cli_go/cmd/sentinel"
 	"github.com/0x3639/znn_cli_go/cmd/stake"
+	"github.com/0x3639/znn_cli_go/cmd/token"
 	"github.com/0x3639/znn_cli_go/pkg/config"
 	"github.com/spf13/cobra"
 )
@@ -64,6 +65,7 @@ func init() {
 	rootCmd.AddCommand(plasma.PlasmaCmd)
 	rootCmd.AddCommand(sentinel.SentinelCmd)
 	rootCmd.AddCommand(stake.StakeCmd)
+	rootCmd.AddCommand(token.TokenCmd)
 
 	// Global persistent flags (available to all subcommands)
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.znn/cli-config.yaml)")

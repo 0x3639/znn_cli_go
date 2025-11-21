@@ -179,18 +179,18 @@ Reference: `cli_handler.dart` lines 702-791
 
 ---
 
-## Phase 10: Token Commands (9 commands) ⏳
+## Phase 10: Token Commands (9 commands) ✅
 
 Reference: `cli_handler.dart` lines 793-1043
 
-- [ ] `token.list` - List all ZTS tokens (Line 793-830)
-- [ ] `token.getByStandard` - Get token by ZTS (Line 832-850)
-- [ ] `token.getByOwner` - Get tokens by owner (Line 852-876)
-- [ ] `token.issue` - Issue new token (Line 878-951)
-- [ ] `token.mint` - Mint additional supply (Line 953-979)
-- [ ] `token.burn` - Burn tokens (Line 981-1003)
-- [ ] `token.transferOwnership` - Transfer ownership (Line 1005-1024)
-- [ ] `token.disableMint` - Disable minting (Line 1026-1043)
+- [x] `token.list` - List all ZTS tokens (Line 793-830)
+- [x] `token.getByStandard` - Get token by ZTS (Line 832-850)
+- [x] `token.getByOwner` - Get tokens by owner (Line 852-876)
+- [x] `token.issue` - Issue new token (Line 878-951)
+- [x] `token.mint` - Mint additional supply (Line 953-979)
+- [x] `token.burn` - Burn tokens (Line 981-1003)
+- [x] `token.transferOwnership` - Transfer ownership (Line 1005-1024)
+- [x] `token.disableMint` - Disable minting (Line 1026-1043)
 
 ---
 
@@ -259,9 +259,9 @@ Reference: `cli_handler.dart` lines 793-1043
 - Staking: 4 commands ✅
 - Pillar: 7 commands ✅
 - Sentinel: 5 commands ✅
-- Token: 9 commands ⏳
-- TUI: Interactive mode ⏳
-- autoreceive: Daemon mode (deferred to Phase 12)
+- Token: 9 commands ✅
+- TUI: Interactive mode ⏳ (deferred to Phase 11)
+- autoreceive: Daemon mode ⏳ (deferred to Phase 12)
 
 **Current Progress**:
 - Phase 1: Project Setup ✅ (100%)
@@ -273,4 +273,5 @@ Reference: `cli_handler.dart` lines 793-1043
 - Phase 7: Staking Commands ✅ (4/4 commands)
 - Phase 8: Pillar Commands ✅ (7/7 commands)
 - Phase 9: Sentinel Commands ✅ (5/5 commands)
-- Overall: **75%** (33/44 commands implemented)
+- Phase 10: Token Commands ✅ (9/9 commands)
+- Overall: **95%** (42/44 commands implemented)
