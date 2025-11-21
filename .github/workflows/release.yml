@@ -1,0 +1,151 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Triggers on version tags like v0.1.0, v1.2.3, etc.
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build Release Binaries
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          # Linux
+          - goos: linux
+            goarch: amd64
+            platform: linux-amd64
+          - goos: linux
+            goarch: arm64
+            platform: linux-arm64
+          # macOS
+          - goos: darwin
+            goarch: amd64
+            platform: darwin-amd64
+          - goos: darwin
+            goarch: arm64
+            platform: darwin-arm64
+          # Windows
+          - goos: windows
+            goarch: amd64
+            platform: windows-amd64
+            ext: .exe
+          - goos: windows
+            goarch: arm64
+            platform: windows-arm64
+            ext: .exe
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.23'
+        cache: true
+
+    - name: Get version from tag
+      id: version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+    - name: Build binary
+      env:
+        GOOS: ${{ matrix.goos }}
+        GOARCH: ${{ matrix.goarch }}
+        CGO_ENABLED: 0
+      run: |
+        mkdir -p dist
+        BINARY_NAME="znn-cli-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}${{ matrix.ext }}"
+        go build -ldflags "-s -w -X main.version=${{ steps.version.outputs.VERSION }}" -o "dist/${BINARY_NAME}"
+
+        # Create checksums
+        cd dist
+        sha256sum "${BINARY_NAME}" > "${BINARY_NAME}.sha256"
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: znn-cli-${{ matrix.platform }}
+        path: dist/*
+        retention-days: 1
+
+  release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download all artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: artifacts
+
+    - name: Prepare release assets
+      run: |
+        mkdir -p release
+        find artifacts -type f -exec cp {} release/ \;
+        ls -lah release/
+
+    - name: Get version from tag
+      id: version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+    - name: Generate release notes
+      id: notes
+      run: |
+        cat > release_notes.md << 'EOF'
+        ## Zenon CLI ${{ steps.version.outputs.VERSION }}
+
+        ### Installation
+
+        Download the appropriate binary for your platform below, verify the checksum, and make it executable:
+
+        **Linux (AMD64)**:
+        ```bash
+        wget https://github.com/${{ github.repository }}/releases/download/${{ steps.version.outputs.VERSION }}/znn-cli-${{ steps.version.outputs.VERSION }}-linux-amd64
+        sha256sum -c znn-cli-${{ steps.version.outputs.VERSION }}-linux-amd64.sha256
+        chmod +x znn-cli-${{ steps.version.outputs.VERSION }}-linux-amd64
+        sudo mv znn-cli-${{ steps.version.outputs.VERSION }}-linux-amd64 /usr/local/bin/znn-cli
+        ```
+
+        **macOS (ARM64 - Apple Silicon)**:
+        ```bash
+        curl -LO https://github.com/${{ github.repository }}/releases/download/${{ steps.version.outputs.VERSION }}/znn-cli-${{ steps.version.outputs.VERSION }}-darwin-arm64
+        shasum -a 256 -c znn-cli-${{ steps.version.outputs.VERSION }}-darwin-arm64.sha256
+        chmod +x znn-cli-${{ steps.version.outputs.VERSION }}-darwin-arm64
+        sudo mv znn-cli-${{ steps.version.outputs.VERSION }}-darwin-arm64 /usr/local/bin/znn-cli
+        ```
+
+        **Windows (AMD64)**:
+        ```powershell
+        # Download znn-cli-${{ steps.version.outputs.VERSION }}-windows-amd64.exe
+        # Verify checksum, then move to desired location
+        ```
+
+        ### What's Changed
+
+        See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/${{ steps.version.outputs.VERSION }}/CHANGELOG.md) for detailed changes.
+
+        ### Checksums
+
+        All binaries include `.sha256` checksum files for verification.
+        EOF
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: release/*
+        body_path: release_notes.md
+        draft: false
+        prerelease: ${{ contains(steps.version.outputs.VERSION, 'alpha') || contains(steps.version.outputs.VERSION, 'beta') || contains(steps.version.outputs.VERSION, 'rc') }}
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
