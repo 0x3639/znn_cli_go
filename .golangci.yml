@@ -5,10 +5,13 @@ run:
 
 linters:
   enable:
-    - gofmt
-    - goimports
     - govet
     - errcheck
     - staticcheck
     - unused
     - ineffassign
+
+formatters:
+  enable:
+    - gofmt
+    - goimports
