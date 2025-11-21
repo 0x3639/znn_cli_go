@@ -158,10 +158,10 @@ func Sign(template *nom.AccountBlock, keypair *wallet.KeyPair) error {
 // Publish publishes a signed and finalized transaction to the network.
 //
 // The transaction must be fully prepared:
-//  - Autofilled (height, previousHash, momentumAcknowledged)
-//  - Hash computed
-//  - PoW/Plasma ensured
-//  - Signed
+//   - Autofilled (height, previousHash, momentumAcknowledged)
+//   - Hash computed
+//   - PoW/Plasma ensured
+//   - Signed
 //
 // Parameters:
 //   - c: RPC client for publishing
