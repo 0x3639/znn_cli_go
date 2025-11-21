@@ -38,6 +38,11 @@ For more information, visit: https://github.com/0x3639/znn_cli_go`,
 	SilenceErrors: true,
 }
 
+// RootCmd returns the root command for use in subcommand packages
+func RootCmd() *cobra.Command {
+	return rootCmd
+}
+
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
