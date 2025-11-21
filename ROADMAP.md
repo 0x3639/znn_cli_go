@@ -34,71 +34,77 @@ This roadmap tracks the implementation progress of the Zenon Go CLI wallet, repl
   - [x] `make fmt`
   - [x] `make clean`
 
-### 1.4 Documentation Standards ⏳
-- [ ] Create README.md
-- [ ] Create CLAUDE.md
+### 1.4 Documentation Standards ✅
+- [x] Create README.md
+- [x] Create CLAUDE.md
 - [ ] Set up LICENSE file
 
 ---
 
-## Phase 2: Core Infrastructure ⏳
+## Phase 2: Core Infrastructure ✅
 
-### 2.1 Install Dependencies
-- [ ] cobra + viper
-- [ ] bubbletea + tview + lipgloss
-- [ ] fatih/color
-- [ ] manifoldco/promptui
-- [ ] SDK: github.com/0x3639/znn-sdk-go
+### 2.1 Install Dependencies ✅
+- [x] cobra + viper
+- [x] fatih/color
+- [x] golang.org/x/term (for secure password input)
+- [x] SDK: github.com/0x3639/znn-sdk-go
+- [ ] bubbletea + tview + lipgloss (deferred to Phase 11 - TUI)
 
-### 2.2 Configuration Package (`pkg/config/`)
-- [ ] Config struct with viper integration
-- [ ] Default values (node URL, wallet path)
-- [ ] Load from `~/.znn/cli-config.yaml`
-- [ ] godoc documentation
+### 2.2 Configuration Package (`pkg/config/`) ✅
+- [x] Config struct with viper integration
+- [x] Default values (node URL, wallet path)
+- [x] Load from `~/.znn/cli-config.yaml`
+- [x] godoc documentation
 
-### 2.3 Wallet Package (`pkg/wallet/`)
-- [ ] Wrapper around SDK KeyStoreManager
-- [ ] Wallet loading with passphrase prompts
-- [ ] Address derivation helpers
-- [ ] godoc documentation
+### 2.3 Wallet Package (`pkg/wallet/`) ✅
+- [x] Wrapper around SDK KeyStoreManager
+- [x] Wallet loading with passphrase prompts
+- [x] Address derivation helpers
+- [x] godoc documentation
 
-### 2.4 Client Package (`pkg/client/`)
-- [ ] RPC client wrapper
-- [ ] Connection management
-- [ ] Auto-reconnection logic
-- [ ] godoc documentation
+### 2.4 Client Package (`pkg/client/`) ✅
+- [x] RPC client wrapper
+- [x] Connection management
+- [x] Auto-reconnection logic
+- [x] godoc documentation
 
-### 2.5 Transaction Package (`pkg/transaction/`)
-- [ ] Autofill helper (height, previousHash, momentum)
-- [ ] Plasma/PoW decision logic
-- [ ] Sign and publish helpers
-- [ ] godoc documentation
+### 2.5 Transaction Package (`pkg/transaction/`) ✅
+- [x] Autofill helper (height, previousHash, momentum)
+- [x] Plasma/PoW decision logic
+- [x] Sign and publish helpers
+- [x] godoc documentation
 
-### 2.6 Format Package (`pkg/format/`)
-- [ ] Amount formatting
-- [ ] Duration formatting
-- [ ] Token standard parsing
-- [ ] Color helpers
-- [ ] godoc documentation
+### 2.6 Format Package (`pkg/format/`) ✅
+- [x] Amount formatting
+- [x] Duration formatting
+- [x] Token standard parsing
+- [x] Color helpers
+- [x] godoc documentation
 
-### 2.7 Root Command (`cmd/root.go`)
-- [ ] Cobra root command setup
-- [ ] Global flags (--url, --passphrase, --keyStore, --index, --verbose)
-- [ ] Command registration
-- [ ] Version command
+### 2.7 Prompt Package (`internal/prompt/`) ✅
+- [x] Secure password input (echo disabled)
+- [x] Password confirmation
+- [x] Yes/no confirmations
+- [x] godoc documentation
+
+### 2.8 Root Command (`cmd/root.go`) ✅
+- [x] Cobra root command setup
+- [x] Global flags (--url, --passphrase, --keyStore, --index, --verbose, --config)
+- [x] Command registration
+- [x] Version command
 
 ---
 
-## Phase 3: Wallet Commands (6 commands) ⏳
+## Phase 3: Wallet Commands (6 commands) ✅
 
 Reference: `reference/znn_cli_dart/lib/init_znn.dart` and `cli_handler.dart`
 
-- [ ] `wallet.list` - List all keyStore files
-- [ ] `wallet.createNew` - Create wallet with BIP39 mnemonic
-- [ ] `wallet.createFromMnemonic` - Import from mnemonic
-- [ ] `wallet.dumpMnemonic` - Display mnemonic for backup
-- [ ] `wallet.deriveAddresses` - Show addresses from BIP44 derivation
-- [ ] `wallet.export` - Export keyStore to file
+- [x] `wallet list` - List all keyStore files
+- [x] `wallet createNew` - Create wallet with BIP39 mnemonic
+- [x] `wallet createFromMnemonic` - Import from mnemonic
+- [x] `wallet dumpMnemonic` - Display mnemonic for backup
+- [x] `wallet deriveAddresses` - Show addresses from BIP44 derivation
+- [x] `wallet export` - Export keyStore to file
 
 ---
 
@@ -161,7 +167,7 @@ Reference: `cli_handler.dart` lines 312-491
 
 ---
 
-## Phase 8: Sentinel Commands (5 commands) ⏳
+## Phase 9: Sentinel Commands (5 commands) ⏳
 
 Reference: `cli_handler.dart` lines 702-791
 
@@ -173,7 +179,7 @@ Reference: `cli_handler.dart` lines 702-791
 
 ---
 
-## Phase 9: Token Commands (9 commands) ⏳
+## Phase 10: Token Commands (9 commands) ⏳
 
 Reference: `cli_handler.dart` lines 793-1043
 
@@ -188,7 +194,7 @@ Reference: `cli_handler.dart` lines 793-1043
 
 ---
 
-## Phase 10: TUI Interface ⏳
+## Phase 11: TUI Interface ⏳
 
 - [ ] Main menu with command categories
 - [ ] Interactive forms for complex operations
@@ -200,33 +206,39 @@ Reference: `cli_handler.dart` lines 793-1043
 
 ---
 
-## Phase 11: Testing & Quality ⏳
+## Phase 12: Testing & Quality ⏳
 
-### 11.1 Linting
+### 12.1 Linting
 - [ ] Run `make lint` - fix all issues
 - [ ] Configure CI to run linters
 
-### 11.2 Security
+### 12.2 Security
 - [ ] Run `make security` - address findings
 - [ ] Review crypto operations
 - [ ] Validate input sanitization
 
-### 11.3 Testing
+### 12.3 Testing
 - [ ] Unit tests for pkg/ packages
 - [ ] Integration tests with testnet
 - [ ] Table-driven tests for formatting
 - [ ] Error case coverage
 - [ ] Target: >80% coverage
 
-### 11.4 Documentation Review
+### 12.4 Documentation Review
 - [ ] Verify all godoc complete
 - [ ] Generate docs: `godoc -http=:6060`
 - [ ] README completeness
 - [ ] CLAUDE.md accuracy
 
+### 12.5 Auto-receive Daemon
+- [ ] Implement `autoreceive` daemon mode (deferred from Phase 5)
+- [ ] WebSocket subscription to account blocks
+- [ ] Auto-receive incoming transactions
+- [ ] TUI mode with live updates
+
 ---
 
-## Phase 12: Release Preparation ⏳
+## Phase 13: Release Preparation ⏳
 
 - [ ] Version tagging (v0.1.0)
 - [ ] GitHub releases with binaries
@@ -239,16 +251,22 @@ Reference: `cli_handler.dart` lines 793-1043
 
 ## Summary Stats
 
-**Total Commands to Implement**: 47
-- Wallet: 6 commands
-- Basic Operations: 9 commands
-- Plasma: 4 commands
-- Staking: 4 commands
-- Pillar: 7 commands
-- Sentinel: 5 commands
-- Token: 9 commands
-- TUI: Interactive mode
+**Total Commands to Implement**: 44
+- Wallet: 6 commands ✅
+- Query: 4 commands ✅
+- Transaction: 3 commands ✅
+- Plasma: 4 commands ⏳
+- Staking: 4 commands ⏳
+- Pillar: 7 commands ⏳
+- Sentinel: 5 commands ⏳
+- Token: 9 commands ⏳
+- TUI: Interactive mode ⏳
+- autoreceive: Daemon mode (deferred to Phase 12)
 
 **Current Progress**:
-- Phase 1: 100% ✅
-- Overall: ~8%
+- Phase 1: Project Setup ✅ (100%)
+- Phase 2: Core Infrastructure ✅ (100%)
+- Phase 3: Wallet Commands ✅ (6/6 commands)
+- Phase 4: Query Commands ✅ (4/4 commands)
+- Phase 5: Transaction Commands ✅ (3/3 commands)
+- Overall: **30%** (13/44 commands implemented)
