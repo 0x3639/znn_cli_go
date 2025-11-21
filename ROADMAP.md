@@ -102,23 +102,30 @@ Reference: `reference/znn_cli_dart/lib/init_znn.dart` and `cli_handler.dart`
 
 ---
 
-## Phase 4: Basic Transaction Commands (9 commands) ⏳
+## Phase 4: Query Commands (4 commands) ✅
 
 Reference: `reference/znn_cli_dart/lib/cli_handler.dart`
 
-- [ ] `version` - Show CLI/SDK/daemon versions (Line 18-27)
-- [ ] `balance` - Display ZNN/QSR/ZTS balances (Line 60-82)
-- [ ] `send` - Send tokens with optional message (Line 84-160)
-- [ ] `receive` - Receive specific block by hash (Line 162-199)
-- [ ] `receiveAll` - Batch receive all pending (Line 201-245)
-- [ ] `unreceived` - List pending transactions (Line 247-272)
-- [ ] `unconfirmed` - Show unconfirmed blocks (Line 274-295)
-- [ ] `frontierMomentum` - Get current momentum info (Line 297-310)
-- [ ] `autoreceive` - Auto-receive daemon mode (Line 1045-1161)
+- [x] `balance` - Display ZNN/QSR/ZTS balances (Line 60-82)
+- [x] `unreceived` - List pending transactions (Line 247-272)
+- [x] `unconfirmed` - Show unconfirmed blocks (Line 274-295)
+- [x] `frontierMomentum` - Get current momentum info (Line 297-310)
 
 ---
 
-## Phase 5: Plasma Commands (4 commands) ⏳
+## Phase 5: Transaction Commands (3 commands) ✅
+
+Reference: `reference/znn_cli_dart/lib/cli_handler.dart`
+
+- [x] `send` - Send tokens (Line 84-160)
+- [x] `receive` - Receive specific block by hash (Line 162-199)
+- [x] `receiveAll` - Batch receive all pending (Line 201-245)
+
+Note: `autoreceive` daemon mode is deferred to Phase 12
+
+---
+
+## Phase 6: Plasma Commands (4 commands) ⏳
 
 Reference: `cli_handler.dart` lines 493-589
 
@@ -129,7 +136,7 @@ Reference: `cli_handler.dart` lines 493-589
 
 ---
 
-## Phase 6: Staking Commands (4 commands) ⏳
+## Phase 7: Staking Commands (4 commands) ⏳
 
 Reference: `cli_handler.dart` lines 591-700
 
@@ -140,7 +147,7 @@ Reference: `cli_handler.dart` lines 591-700
 
 ---
 
-## Phase 7: Pillar Commands (7 commands) ⏳
+## Phase 8: Pillar Commands (7 commands) ⏳
 
 Reference: `cli_handler.dart` lines 312-491
 
