@@ -1,5 +1,8 @@
 version: v2
 
+run:
+  timeout: 5m
+
 linters:
   enable:
     - gofmt
