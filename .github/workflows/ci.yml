@@ -111,10 +111,15 @@ jobs:
     - name: Build
       run: go build -v ./...
 
-    - name: Build CLI binary
+    - name: Build CLI binary (Unix)
       run: go build -ldflags "-s -w" -o znn-cli
+      if: runner.os != 'Windows'
 
-    - name: Test binary version
+    - name: Build CLI binary (Windows)
+      run: go build -ldflags "-s -w" -o znn-cli.exe
+      if: runner.os == 'Windows'
+
+    - name: Test binary version (Unix)
       run: ./znn-cli version
       if: runner.os != 'Windows'
 
