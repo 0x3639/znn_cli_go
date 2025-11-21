@@ -1,6 +1,6 @@
 module github.com/0x3639/znn_cli_go
 
-go 1.25.4
+go 1.24.0
 
 require (
 	github.com/0x3639/znn-sdk-go v0.1.6
