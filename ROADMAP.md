@@ -167,15 +167,15 @@ Reference: `cli_handler.dart` lines 312-491
 
 ---
 
-## Phase 9: Sentinel Commands (5 commands) ⏳
+## Phase 9: Sentinel Commands (5 commands) ✅
 
 Reference: `cli_handler.dart` lines 702-791
 
-- [ ] `sentinel.list` - List sentinel info (Line 702-732)
-- [ ] `sentinel.register` - Register sentinel (Line 734-752)
-- [ ] `sentinel.revoke` - Revoke sentinel (Line 754-768)
-- [ ] `sentinel.collect` - Collect rewards (Line 770-781)
-- [ ] `sentinel.withdrawQsr` - Withdraw QSR (Line 783-791)
+- [x] `sentinel.list` - List sentinel info (Line 702-732)
+- [x] `sentinel.register` - Register sentinel (Line 734-752)
+- [x] `sentinel.revoke` - Revoke sentinel (Line 754-768)
+- [x] `sentinel.collect` - Collect rewards (Line 770-781)
+- [x] `sentinel.withdrawQsr` - Withdraw QSR (Line 783-791)
 
 ---
 
@@ -258,7 +258,7 @@ Reference: `cli_handler.dart` lines 793-1043
 - Plasma: 4 commands ✅
 - Staking: 4 commands ✅
 - Pillar: 7 commands ✅
-- Sentinel: 5 commands ⏳
+- Sentinel: 5 commands ✅
 - Token: 9 commands ⏳
 - TUI: Interactive mode ⏳
 - autoreceive: Daemon mode (deferred to Phase 12)
@@ -272,4 +272,5 @@ Reference: `cli_handler.dart` lines 793-1043
 - Phase 6: Plasma Commands ✅ (4/4 commands)
 - Phase 7: Staking Commands ✅ (4/4 commands)
 - Phase 8: Pillar Commands ✅ (7/7 commands)
-- Overall: **64%** (28/44 commands implemented)
+- Phase 9: Sentinel Commands ✅ (5/5 commands)
+- Overall: **75%** (33/44 commands implemented)
