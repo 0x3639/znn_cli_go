@@ -1,0 +1,54 @@
+run:
+  timeout: 5m
+  tests: true
+  skip-dirs:
+    - reference
+
+linters:
+  enable:
+    - gofmt
+    - goimports
+    - govet
+    - staticcheck
+    - errcheck
+    - ineffassign
+    - unused
+    - misspell
+    - gosimple
+    - gocritic
+    - bodyclose
+    - exportloopref
+    - nilerr
+    - stylecheck
+    - unparam
+    - unconvert
+    - whitespace
+    - gocyclo
+    - goconst
+    - gocognit
+
+linters-settings:
+  gocyclo:
+    min-complexity: 15
+  goconst:
+    min-len: 3
+    min-occurrences: 3
+  gocognit:
+    min-complexity: 20
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - performance
+      - style
+    disabled-checks:
+      - unnamedResult
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+  staticcheck:
+    checks: ["all"]
+
+issues:
+  exclude-use-default: false
+  max-issues-per-linter: 0
+  max-same-issues: 0

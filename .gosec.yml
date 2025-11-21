@@ -1,0 +1,18 @@
+# gosec configuration
+global:
+  nosec: false
+  audit: enabled
+
+excludes:
+  - G104  # Allow unhandled errors in some cases (we use errcheck)
+  - G304  # Allow file path joins (validated in our code)
+
+severity: medium
+
+confidence: medium
+
+exclude-generated: true
+
+exclude-dirs:
+  - reference
+  - vendor
