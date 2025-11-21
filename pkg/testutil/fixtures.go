@@ -63,24 +63,24 @@ const MnemonicFixture = "route become dream access impulse price inform obtain e
 
 // InvalidAddresses provides a list of invalid address formats for testing
 var InvalidAddresses = []string{
-	"",                                           // Empty
-	"z1",                                         // Too short
-	"z1qzal6c5s9rjnnxd2z672tx3apscy5s5qqhslq",  // Missing last character
-	"x1qzal6c5s9rjnnxd2z672tx3apscy5s5qqhslq5", // Wrong prefix
+	"",   // Empty
+	"z1", // Too short
+	"z1qzal6c5s9rjnnxd2z672tx3apscy5s5qqhslq",   // Missing last character
+	"x1qzal6c5s9rjnnxd2z672tx3apscy5s5qqhslq5",  // Wrong prefix
 	"z1qzal6c5s9rjnnxd2z672tx3apscy5s5qqhslq5z", // Too long
-	"invalid-address",                            // Invalid format
-	"z1QZAL6C5S9RJNNXD2Z672TX3APSCY5S5QQHSLQ5", // Uppercase (invalid)
+	"invalid-address",                           // Invalid format
+	"z1QZAL6C5S9RJNNXD2Z672TX3APSCY5S5QQHSLQ5",  // Uppercase (invalid)
 }
 
 // InvalidTokenStandards provides invalid token standard strings for testing
 var InvalidTokenStandards = []string{
-	"",                                     // Empty
-	"ZTS",                                  // Too short
-	"zts1qsrxxxxxxxxxxxxxmrhjl",           // Missing character
-	"znn",                                  // Lowercase ZNN
-	"qsr",                                  // Lowercase QSR
-	"invalid-token",                        // Invalid format
-	"zts1QSRXXXXXXXXXXXXXMRHJLL",          // Uppercase (invalid)
+	"",                           // Empty
+	"ZTS",                        // Too short
+	"zts1qsrxxxxxxxxxxxxxmrhjl",  // Missing character
+	"znn",                        // Lowercase ZNN
+	"qsr",                        // Lowercase QSR
+	"invalid-token",              // Invalid format
+	"zts1QSRXXXXXXXXXXXXXMRHJLL", // Uppercase (invalid)
 }
 
 // KeyStoreNameFixture is a sample keystore name for testing
