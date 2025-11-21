@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/0x3639/znn_cli_go/cmd/pillar"
 	"github.com/0x3639/znn_cli_go/cmd/plasma"
 	"github.com/0x3639/znn_cli_go/cmd/stake"
 	"github.com/0x3639/znn_cli_go/pkg/config"
@@ -58,6 +59,7 @@ func init() {
 	cobra.OnInitialize(initConfig)
 
 	// Register subcommand groups
+	rootCmd.AddCommand(pillar.PillarCmd)
 	rootCmd.AddCommand(plasma.PlasmaCmd)
 	rootCmd.AddCommand(stake.StakeCmd)
 

@@ -153,17 +153,17 @@ Reference: `cli_handler.dart` lines 591-700
 
 ---
 
-## Phase 8: Pillar Commands (7 commands) ⏳
+## Phase 8: Pillar Commands (7 commands) ✅
 
 Reference: `cli_handler.dart` lines 312-491
 
-- [ ] `pillar.list` - List all pillars (Line 312-366)
-- [ ] `pillar.register` - Register new pillar (Line 368-405)
-- [ ] `pillar.revoke` - Revoke pillar (Line 407-423)
-- [ ] `pillar.delegate` - Delegate to pillar (Line 425-443)
-- [ ] `pillar.undelegate` - Remove delegation (Line 445-460)
-- [ ] `pillar.collect` - Collect pillar rewards (Line 462-476)
-- [ ] `pillar.withdrawQsr` - Withdraw deposited QSR (Line 478-491)
+- [x] `pillar.list` - List all pillars (Line 312-366)
+- [x] `pillar.register` - Register new pillar (Line 368-405)
+- [x] `pillar.revoke` - Revoke pillar (Line 407-423)
+- [x] `pillar.delegate` - Delegate to pillar (Line 425-443)
+- [x] `pillar.undelegate` - Remove delegation (Line 445-460)
+- [x] `pillar.collect` - Collect pillar rewards (Line 462-476)
+- [x] `pillar.withdrawQsr` - Withdraw deposited QSR (Line 478-491)
 
 ---
 
@@ -257,7 +257,7 @@ Reference: `cli_handler.dart` lines 793-1043
 - Transaction: 3 commands ✅
 - Plasma: 4 commands ✅
 - Staking: 4 commands ✅
-- Pillar: 7 commands ⏳
+- Pillar: 7 commands ✅
 - Sentinel: 5 commands ⏳
 - Token: 9 commands ⏳
 - TUI: Interactive mode ⏳
@@ -271,4 +271,5 @@ Reference: `cli_handler.dart` lines 793-1043
 - Phase 5: Transaction Commands ✅ (3/3 commands)
 - Phase 6: Plasma Commands ✅ (4/4 commands)
 - Phase 7: Staking Commands ✅ (4/4 commands)
-- Overall: **48%** (21/44 commands implemented)
+- Phase 8: Pillar Commands ✅ (7/7 commands)
+- Overall: **64%** (28/44 commands implemented)
