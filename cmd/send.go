@@ -87,7 +87,7 @@ func runSend(cmd *cobra.Command, args []string) error {
 	if err != nil {
 		return fmt.Errorf("failed to connect to node: %w", err)
 	}
-	defer rpcClient.Close()
+	defer func() { _ = rpcClient.Close() }()
 
 	// Get account info to check balance and get token decimals
 	accountInfo, err := rpcClient.LedgerApi.GetAccountInfoByAddress(types.ParseAddressPanic(address))

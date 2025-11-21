@@ -29,7 +29,7 @@ func runFrontierMomentum(cmd *cobra.Command, args []string) error {
 	if err != nil {
 		return fmt.Errorf("failed to connect to node: %w", err)
 	}
-	defer rpcClient.Close()
+	defer func() { _ = rpcClient.Close() }()
 
 	// Get frontier momentum
 	momentum, err := rpcClient.LedgerApi.GetFrontierMomentum()

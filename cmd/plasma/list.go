@@ -45,12 +45,12 @@ func runList(cmdCobra *cobra.Command, args []string) error {
 	pageIndex := uint32(0)
 	pageSize := uint32(25)
 	if len(args) >= 1 {
-		// #nosec G104 - Default value used on parse failure
-		fmt.Sscanf(args[0], "%d", &pageIndex)
+		// Ignore error - default value used on parse failure
+		_, _ = fmt.Sscanf(args[0], "%d", &pageIndex)
 	}
 	if len(args) >= 2 {
-		// #nosec G104 - Default value used on parse failure
-		fmt.Sscanf(args[1], "%d", &pageSize)
+		// Ignore error - default value used on parse failure
+		_, _ = fmt.Sscanf(args[1], "%d", &pageSize)
 	}
 
 	// Load wallet
@@ -69,7 +69,7 @@ func runList(cmdCobra *cobra.Command, args []string) error {
 	if err != nil {
 		return fmt.Errorf("failed to connect to node: %w", err)
 	}
-	defer rpcClient.Close()
+	defer func() { _ = rpcClient.Close() }()
 
 	// Get fusion entries
 	fusionList, err := rpcClient.PlasmaApi.GetEntriesByAddress(types.ParseAddressPanic(address), pageIndex, pageSize)

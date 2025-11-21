@@ -55,7 +55,7 @@ func runExport(c *cobra.Command, args []string) error {
 	if err != nil {
 		return fmt.Errorf("failed to open source file: %w", err)
 	}
-	defer sourceFile.Close()
+	defer func() { _ = sourceFile.Close() }()
 
 	// Create destination file
 	// #nosec G304 - Destination path is user-specified (expected CLI behavior)
@@ -63,7 +63,7 @@ func runExport(c *cobra.Command, args []string) error {
 	if err != nil {
 		return fmt.Errorf("failed to create destination file: %w", err)
 	}
-	defer destFile.Close()
+	defer func() { _ = destFile.Close() }()
 
 	// Copy file
 	_, err = io.Copy(destFile, sourceFile)

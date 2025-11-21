@@ -71,7 +71,7 @@ func runList(cmdCobra *cobra.Command, args []string) error {
 	if err != nil {
 		return fmt.Errorf("failed to connect to node: %w", err)
 	}
-	defer rpcClient.Close()
+	defer func() { _ = rpcClient.Close() }()
 
 	// Get stake entries
 	stakeList, err := rpcClient.StakeApi.GetEntriesByAddress(types.ParseAddressPanic(address), pageIndex, pageSize)

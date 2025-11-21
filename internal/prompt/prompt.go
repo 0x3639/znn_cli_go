@@ -23,7 +23,7 @@ func Password(message string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("failed to set terminal mode: %w", err)
 	}
-	defer term.Restore(fd, oldState)
+	defer func() { _ = term.Restore(fd, oldState) }()
 
 	// Read password
 	password, err := term.ReadPassword(fd)

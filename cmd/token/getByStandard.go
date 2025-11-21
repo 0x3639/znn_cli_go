@@ -77,7 +77,7 @@ func runGetByStandard(cmdCobra *cobra.Command, args []string) error {
 	if err != nil {
 		return fmt.Errorf("failed to connect to node: %w", err)
 	}
-	defer rpcClient.Close()
+	defer func() { _ = rpcClient.Close() }()
 
 	// Get token info
 	token, err := rpcClient.TokenApi.GetByZts(tokenStandard)
@@ -86,11 +86,14 @@ func runGetByStandard(cmdCobra *cobra.Command, args []string) error {
 	}
 
 	// Determine token color
-	tokenColor := format.Magenta
-	if token.ZenonTokenStandard == types.ZnnTokenStandard {
+	var tokenColor func(...interface{}) string
+	switch token.ZenonTokenStandard {
+	case types.ZnnTokenStandard:
 		tokenColor = format.Green
-	} else if token.ZenonTokenStandard == types.QsrTokenStandard {
+	case types.QsrTokenStandard:
 		tokenColor = format.Blue
+	default:
+		tokenColor = format.Magenta
 	}
 
 	// Display token info
