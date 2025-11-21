@@ -5,6 +5,8 @@
 [![Security](https://img.shields.io/badge/security-gosec%20clean-brightgreen)](https://github.com/securego/gosec)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+> ⚠️ **Development Status**: This project is under active development. While all 42 core commands are implemented and tested, thorough testing on testnet/mainnet is still required before production use. Use at your own risk.
+
 A complete command-line interface wallet for the Zenon Network, written in Go. This CLI replicates all core functionality from the [Dart CLI](https://github.com/zenon-network/znn_cli_dart) with improved usability and performance.
 
 ## Features
@@ -284,4 +286,4 @@ Contributions are welcome! Please:
 
 ---
 
-**Status**: ✅ **Production Ready** - All core functionality complete! See [ROADMAP.md](ROADMAP.md) for details.
+**Status**: 🚧 **Under Development** - All 42 core commands implemented. Requires extensive testnet/mainnet testing before production use. See [ROADMAP.md](ROADMAP.md) for details.
