@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/0x3639/znn_cli_go/cmd/plasma"
 	"github.com/0x3639/znn_cli_go/pkg/config"
 	"github.com/spf13/cobra"
 )
@@ -54,6 +55,9 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
+
+	// Register subcommand groups
+	rootCmd.AddCommand(plasma.PlasmaCmd)
 
 	// Global persistent flags (available to all subcommands)
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.znn/cli-config.yaml)")

@@ -131,14 +131,14 @@ Note: `autoreceive` daemon mode is deferred to Phase 12
 
 ---
 
-## Phase 6: Plasma Commands (4 commands) ⏳
+## Phase 6: Plasma Commands (4 commands) ✅
 
 Reference: `cli_handler.dart` lines 493-589
 
-- [ ] `plasma.list` - List fusion entries (Line 493-522)
-- [ ] `plasma.get` - Get plasma info (Line 524-541)
-- [ ] `plasma.fuse` - Fuse QSR for beneficiary (Line 543-565)
-- [ ] `plasma.cancel` - Cancel fusion by ID (Line 567-589)
+- [x] `plasma.list` - List fusion entries (Line 493-522)
+- [x] `plasma.get` - Get plasma info (Line 524-541)
+- [x] `plasma.fuse` - Fuse QSR for beneficiary (Line 543-565)
+- [x] `plasma.cancel` - Cancel fusion by ID (Line 567-589)
 
 ---
 
@@ -255,7 +255,7 @@ Reference: `cli_handler.dart` lines 793-1043
 - Wallet: 6 commands ✅
 - Query: 4 commands ✅
 - Transaction: 3 commands ✅
-- Plasma: 4 commands ⏳
+- Plasma: 4 commands ✅
 - Staking: 4 commands ⏳
 - Pillar: 7 commands ⏳
 - Sentinel: 5 commands ⏳
@@ -269,4 +269,5 @@ Reference: `cli_handler.dart` lines 793-1043
 - Phase 3: Wallet Commands ✅ (6/6 commands)
 - Phase 4: Query Commands ✅ (4/4 commands)
 - Phase 5: Transaction Commands ✅ (3/3 commands)
-- Overall: **30%** (13/44 commands implemented)
+- Phase 6: Plasma Commands ✅ (4/4 commands)
+- Overall: **39%** (17/44 commands implemented)
