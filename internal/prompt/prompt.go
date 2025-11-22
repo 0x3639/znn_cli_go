@@ -27,7 +27,7 @@ func Password(message string) (string, error) {
 
 	// Read password
 	password, err := term.ReadPassword(fd)
-	fmt.Println() // Print newline after password input
+	fmt.Print("\r\n") // Print carriage return + newline after password input
 
 	if err != nil {
 		return "", fmt.Errorf("failed to read password: %w", err)
