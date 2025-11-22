@@ -9,36 +9,9 @@ permissions:
   contents: write
 
 jobs:
-  build:
-    name: Build Release Binaries
+  build-linux:
+    name: Build Linux Binary
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          # Linux
-          - goos: linux
-            goarch: amd64
-            platform: linux-amd64
-          - goos: linux
-            goarch: arm64
-            platform: linux-arm64
-          # macOS
-          - goos: darwin
-            goarch: amd64
-            platform: darwin-amd64
-          - goos: darwin
-            goarch: arm64
-            platform: darwin-arm64
-          # Windows
-          - goos: windows
-            goarch: amd64
-            platform: windows-amd64
-            ext: .exe
-          - goos: windows
-            goarch: arm64
-            platform: windows-arm64
-            ext: .exe
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -54,13 +27,9 @@ jobs:
       run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
     - name: Build binary
-      env:
-        GOOS: ${{ matrix.goos }}
-        GOARCH: ${{ matrix.goarch }}
-        CGO_ENABLED: 0
       run: |
         mkdir -p dist
-        BINARY_NAME="znn-cli-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}${{ matrix.ext }}"
+        BINARY_NAME="znn-cli-${{ steps.version.outputs.VERSION }}-linux-amd64"
         go build -ldflags "-s -w -X main.version=${{ steps.version.outputs.VERSION }}" -o "dist/${BINARY_NAME}"
 
         # Create checksums
@@ -70,13 +39,81 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: znn-cli-${{ matrix.platform }}
+        name: znn-cli-linux-amd64
+        path: dist/*
+        retention-days: 1
+
+  build-macos:
+    name: Build macOS Binary
+    runs-on: macos-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.23'
+        cache: true
+
+    - name: Get version from tag
+      id: version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+    - name: Build binary
+      run: |
+        mkdir -p dist
+        BINARY_NAME="znn-cli-${{ steps.version.outputs.VERSION }}-darwin-$(uname -m)"
+        go build -ldflags "-s -w -X main.version=${{ steps.version.outputs.VERSION }}" -o "dist/${BINARY_NAME}"
+
+        # Create checksums
+        cd dist
+        shasum -a 256 "${BINARY_NAME}" > "${BINARY_NAME}.sha256"
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: znn-cli-darwin-${{ runner.arch }}
+        path: dist/*
+        retention-days: 1
+
+  build-windows:
+    name: Build Windows Binary
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.23'
+        cache: true
+
+    - name: Get version from tag
+      id: version
+      run: echo "VERSION=$($env:GITHUB_REF -replace 'refs/tags/','')" >> $env:GITHUB_OUTPUT
+
+    - name: Build binary
+      run: |
+        mkdir dist
+        $BINARY_NAME = "znn-cli-${{ steps.version.outputs.VERSION }}-windows-amd64.exe"
+        go build -ldflags "-s -w -X main.version=${{ steps.version.outputs.VERSION }}" -o "dist/$BINARY_NAME"
+
+        # Create checksums
+        cd dist
+        Get-FileHash -Algorithm SHA256 $BINARY_NAME | ForEach-Object { "$($_.Hash.ToLower())  $BINARY_NAME" } | Out-File -Encoding ASCII "$BINARY_NAME.sha256"
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: znn-cli-windows-amd64
         path: dist/*
         retention-days: 1
 
   release:
     name: Create GitHub Release
-    needs: build
+    needs: [build-linux, build-macos, build-windows]
     runs-on: ubuntu-latest
 
     steps:
